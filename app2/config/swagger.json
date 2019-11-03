@@ -1,0 +1,181 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "API - Pagarme",
+      "version": "1.0.0" 
+    },
+    "host": "localhost:3000",
+    "basePath": "/",
+    "schemes": ["http"],
+    "produces": ["application/json"],
+    "tags": [{
+      "name":"Transaction",
+      "description": "Listar transações, add. transações,..."
+    },
+    {
+      "name":"Payable",
+      "description": "Listar pagamentos, add. pagamentos, saldo por PDV..."
+    } 
+  
+  ],
+    "paths": {
+      "/payable/extrato/{codPdv}": {
+        "get": {
+          "tags": ["Payable"],
+          "summary": "Obtem o saldo de um PDV, das transações feitas no crédito e no débito",
+          "parameters": [{
+            "name": "codPdv",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "Id payable"
+
+          }],
+          "responses": {
+            "200": {
+              "description": "OK"
+            }
+          }
+        }
+      },
+      "/payable/{id}": {
+        "get": {
+          "tags": ["Payable"],
+          "summary": "Lista as transações pelo id",
+          "parameters": [{
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "description": "Id payable"
+          }],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+
+            "404":{
+              "description": "Recurso não localizado"
+            }
+          }
+        }
+      },
+
+      "/payable": {
+        "get": {
+          "tags": ["Payable"],
+          "summary": "Lista os pagamentos",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "404":{
+              "description": "Recurso não localizado"
+            }
+          }
+        }
+      },
+
+      "/Transaction": {
+
+        "post": {
+          "tags": ["Transaction"],
+          "summary": "Add uma nova transação",
+          
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Object transaction",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/transaction"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad request"
+            }
+          }
+        },
+
+        "get": {
+          "summary": "Lista todas as transações",
+          "parameters": [],
+          "tags": ["Transaction"],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "404":{
+              "description": "Recurso não localizado"
+            }
+          }
+        }
+      
+      },
+      "/Transaction/{id}": {
+        "get": {
+          "tags": ["Transaction"],
+          "summary": "Lista uma transação específica passando id da transação",
+          "parameters": [
+            {
+              "type": "integer",
+              "in": "path",
+              "name": "id",
+              "description": "Id da transação",
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK"
+            },
+            "400": {
+              "description": "Bad request"
+            }
+          }
+        }
+      }      
+            
+
+  },
+ 
+  "definitions": {
+    "transaction": {
+      "type":"object",
+      "properties": {
+        "vl_tran": {
+          "type": "integer"
+        },
+        "ds_tran":{
+          "type":"string"
+        },
+        "pay_method":{
+          "type":"string"
+        },
+        "card_number":{
+          "type":"string"
+        },
+        "card_bearer":{
+          "type":"string"
+        },
+        "card_valid_thru":{
+          "type":"string"
+        },
+        "card_cvv":{
+          "type":"string"
+        },
+        "cod_pdv":{
+          "type":"string"
+        }
+
+      }
+    }
+  }
+}

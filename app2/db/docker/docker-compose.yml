@@ -1,0 +1,22 @@
+version: '2'
+volumes:
+  dados:
+services:
+  db:
+    image: postgres:9.6
+    volumes:
+      # Volume dos dados
+      - ./posgres-data:/var/lib/postgresql/data
+      # scripts
+      - ./scripts:/scripts
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 5432:5432
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+

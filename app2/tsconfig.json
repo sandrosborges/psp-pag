@@ -1,0 +1,18 @@
+{
+  "compilerOptions":{
+    "baseUrl": ".",
+    "paths": { "*": ["types/*"] },
+    "outDir":"Dist",
+    "target":"es2015",
+    "module":"commonjs",    
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "typeRoots": [
+      "typings/global",
+      "typings/modules"
+    ]
+  },
+  "exclude": [
+      "**/*.test.ts"
+  ]
+}
