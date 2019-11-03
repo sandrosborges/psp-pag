@@ -21,15 +21,18 @@ Abra um terminal (ou prompt se estiver no windows), escolha uma pasta para baixa
   1.  Navegue até a pasta: "/psp-pag/app2/db/docker/:
   2.  execute o comando: "docker-compose ps " [ENTER], para verificar os status dos serviços docker-compose. Na primeira vez, o   resultado deve ser:
   
-        Name   Command   State   Ports 
-        ------------------------------
+          Name                    Command               State           Ports         
+  ----------------------------------------------------------------------------------
+        
       Indicando que não existe nenhum serviço ativo.
   3.  Inicie os serviços, com o comando: "docker-compose up -d" [ENTER] Pode verificar os serviços utilizando o comando         anterior ("docker-compose ps " [ENTER]). O resultado deverá ser parecido com este:
   
-          Name                    Command               State           Ports          
+          Name                    Command               State           Ports         
   ----------------------------------------------------------------------------------
-  docker_adminer_1   entrypoint.sh docker-php-e ...   Up      0.0.0.0:8080->8080/tcp 
+  docker_adminer_1   entrypoint.sh docker-php-e ...   Up      0.0.0.0:8080->8080/tcp   
   docker_db_1        docker-entrypoint.sh postgres    Up      0.0.0.0:5432->5432/tcp 
+  
+  
   
   4. Já temos o "Adminer" executando em http://localhost:8080/, acesse e escolha PostgreSQL:
   
