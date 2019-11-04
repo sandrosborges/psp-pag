@@ -25,7 +25,7 @@ class ResponseHandler{
     
 
         }).catch(ex =>{            
-            res.status(500).json(ex.stack)
+           res.status(500).json(ex.message)
         })
         
     
