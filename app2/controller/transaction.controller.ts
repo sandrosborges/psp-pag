@@ -22,11 +22,10 @@ export class TransactionController  {
         return this._model.getTransaction(id);
     }
 
-    createTransaction(req:express.Request, res:express.Response):Promise<any>
+    async createTransaction(req:express.Request, res:express.Response):Promise<any>
     {
-        const transaction:ITransaction = req.body;
-         
-        return this._model.createTransaction(transaction);
+        const transaction:ITransaction = req.body;         
+        return await this._model.createTransaction(transaction);
     }
 
 }
