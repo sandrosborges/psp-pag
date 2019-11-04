@@ -69,8 +69,9 @@ Abra um terminal (ou prompt se estiver no windows), escolha uma pasta para baixa
 
 7. Para executar os testes, pare a aplicação e a partir da pasta /psp-pag/app2/, execute o comando: "npm test"
 
+# OBS: Para executar sem o docker, utilizando um outro server db Postgres, basta executar o script de inicialização do BD, que fica na pasta "/app2/db/docker/scripts/init.sql" e alterar a connection string editando o arquivo de configuração da aplicação em "/app2/common/environment.ts"
 
-Obs: Não foi implementada a segurança da API (JWT) e também a forma abordada para cálculo de saldo não é recomendada para ambiente produtivo.
+# OBS2: Não foi implementada a segurança da API (JWT) e também a forma abordada para cálculo de saldo não é recomendada para ambiente produtivo.
  
  
  
