@@ -9,24 +9,51 @@ export class TransactionModel{
 
     _db:pg.Pool
 
+    /**
+     *  Metodo construtor da classe
+     *
+     * @param db : Objeto conexao de dados (conexao banco postgress)
+     */
     constructor(db:any){
         this._db = db
     }
 
+    /**
+     * Metodo que faz o mascaramento do cartao, retornando apenas os 4 ultimos digitos
+     * que vão ser armazenados no banco de dados
+     *
+     * @param cardNumber 
+     */
     private maskCardNumber(cardNumber:string):string{
         return  cardNumber.substr(12,4)
     }
 
+    /**
+     *  Metodo que retorna todas as transações cadastradas no banco
+     */
     getTransactions():Promise<pg.QueryResult<any>>
     {
         return this._db.query('SELECT * FROM PSP_TRANSACTION ORDER BY id ASC')       
     }
 
+    /**
+     *  Metodo que retorna uma transacao a partir do id
+     *
+     * @param id - identificador da transação
+     *
+     */
     getTransaction(id:number):Promise<pg.QueryResult<any>>
     {
         return this._db.query(`SELECT * FROM PSP_TRANSACTION WHERE ID = ${id} ORDER BY id ASC`)       
     }    
 
+    /**
+     * Metodo que cria a transação no banco e cria também o pagamento (payable)
+     * A operação é transacionada no BD, caso ocorra algum problema ao gerar o 
+     * pagamento (payable), ocorre o rollback da transação
+     *
+     * @param transaction - parametro que representa a transação (interface ITransaction)
+     */
     async createTransaction(transaction:ITransaction):Promise<pg.QueryResult<any>>
     {
         const query = {
@@ -58,7 +85,7 @@ export class TransactionModel{
              
 
             const query_pay = {
-                text:'INSERT INTO PSP_PAYABLE (id_psp_transcation2, cod_PDV, pay_method, vl_payment, payment_date, status, vl_tran_fee)  VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *', 
+                text:'INSERT INTO PSP_PAYABLE (id_psp_transcation, cod_PDV, pay_method, vl_payment, payment_date, status, vl_tran_fee)  VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *', 
                 values:[payVals.id_psp_transcation, payVals.cod_PDV, payVals.pay_method, payVals.vl_payment, payVals.payment_date,payVals.status, payVals.vl_tran_fee]
             }
 

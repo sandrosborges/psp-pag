@@ -1,5 +1,9 @@
 import Joi from 'joi';
 
+/** 
+*  Koi schema para validação da Transaction
+*  No create da transaction (POST)
+*/
 export const schemas = {
     transaction: {
         

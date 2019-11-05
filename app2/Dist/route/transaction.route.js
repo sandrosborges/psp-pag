@@ -18,7 +18,7 @@ class TransactionRouter extends router_1.Router {
         // Retorna uma transacao especifica, pelo ID
         application.get('/transaction/:id', (req, res) => {
             if (/^(\-|\+)?([0-9]+|Infinity)$/.test(req.params.id)) {
-                let baseurl = req.originalUrl.replace(req.params.id, '');
+                let baseurl = req.originalUrl.replace(`/${req.params.id}`, '');
                 return response_handler_1.handler.response(res, controller.getTransaction(Number(req.params.id)), baseurl);
             }
             else

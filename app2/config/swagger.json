@@ -27,8 +27,8 @@
             "name": "codPdv",
             "in": "path",
             "required": true,
-            "type": "integer",
-            "description": "Id payable"
+            "type": "string",
+            "description": ""
 
           }],
           "responses": {
@@ -47,7 +47,7 @@
             "in": "path",
             "required": true,
             "type": "integer",
-            "description": "Id payable"
+            "description": ""
           }],
           "responses": {
             "200": {
@@ -128,7 +128,7 @@
               "type": "integer",
               "in": "path",
               "name": "id",
-              "description": "Id da transação",
+              "description": "",
               "required": true
             }
           ],

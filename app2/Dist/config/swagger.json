@@ -10,7 +10,7 @@
     "produces": ["application/json"],
     "tags": [{
             "name": "Transaction",
-            "description": "Listar transacoes, add. transacoes,..."
+            "description": "Listar transações, add. transações,..."
         },
         {
             "name": "Payable",
@@ -21,13 +21,13 @@
         "/payable/extrato/{codPdv}": {
             "get": {
                 "tags": ["Payable"],
-                "summary": "Obtem o saldo de um PDV, das transacoes feitas no credito e no debito",
+                "summary": "Obtem o saldo de um PDV, das transações feitas no crédito e no débito",
                 "parameters": [{
                         "name": "codPdv",
                         "in": "path",
                         "required": true,
-                        "type": "integer",
-                        "description": "Id payable"
+                        "type": "string",
+                        "description": ""
                     }],
                 "responses": {
                     "200": {
@@ -45,14 +45,14 @@
                         "in": "path",
                         "required": true,
                         "type": "integer",
-                        "description": "Id payable"
+                        "description": ""
                     }],
                 "responses": {
                     "200": {
                         "description": "OK"
                     },
                     "404": {
-                        "description": "Recurso nao localizado"
+                        "description": "Recurso não localizado"
                     }
                 }
             }
@@ -67,7 +67,7 @@
                         "description": "OK"
                     },
                     "404": {
-                        "description": "Recurso nao localizado"
+                        "description": "Recurso não localizado"
                     }
                 }
             }
@@ -105,7 +105,7 @@
                         "description": "OK"
                     },
                     "404": {
-                        "description": "Recurso nao localizado"
+                        "description": "Recurso não localizado"
                     }
                 }
             }
@@ -113,13 +113,13 @@
         "/Transaction/{id}": {
             "get": {
                 "tags": ["Transaction"],
-                "summary": "Lista uma transação especifica passando id da transação",
+                "summary": "Lista uma transação específica passando id da transação",
                 "parameters": [
                     {
                         "type": "integer",
                         "in": "path",
                         "name": "id",
-                        "description": "Id da transação",
+                        "description": "",
                         "required": true
                     }
                 ],

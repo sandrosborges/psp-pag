@@ -26,7 +26,7 @@ class TransactionRouter extends Router {
  
       if(/^(\-|\+)?([0-9]+|Infinity)$/.test(req.params.id)) 
       {
-        let baseurl:string = req.originalUrl.replace(req.params.id,'')
+        let baseurl:string = req.originalUrl.replace(`/${req.params.id}`,'')
         return  handler.response(res,controller.getTransaction(Number(req.params.id)),baseurl) 
       }
       else

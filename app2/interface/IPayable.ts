@@ -1,3 +1,4 @@
+/* Interface Payable */
 export interface IPayable {
     id:number,
     id_psp_transcation: number,

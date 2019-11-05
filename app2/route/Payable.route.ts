@@ -28,7 +28,7 @@ class PayableRouter extends Router {
 
             if(/^(\-|\+)?([0-9]+|Infinity)$/.test(req.params.id)) 
             {
-              let baseurl:string = req.originalUrl.replace(req.params.id,'')
+              let baseurl:string = req.originalUrl.replace(`/${req.params.id}`,'')
               return  handler.response(res,controller.getPayable(Number(req.params.id)),baseurl) 
             }
             else
@@ -40,7 +40,7 @@ class PayableRouter extends Router {
 
         // Retorna o saldo dos payables agrupados por cliente (cod_PDV)
         application.get('/payable/extrato/:cod_pdv', (req, res) => {
-            let baseurl:string= req.originalUrl
+            let baseurl:string= req.originalUrl.replace(`/${req.params.cod_pdv}`,'')
             return  handler.response(res,controller.getExtrato(req.params.cod_pdv),baseurl)                  
         }) 
 

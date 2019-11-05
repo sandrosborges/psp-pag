@@ -1,3 +1,4 @@
+/** interface Transaction */
 export interface ITransaction {
     id:number,
     vl_tran: number,
